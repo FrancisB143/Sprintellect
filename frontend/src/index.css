@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* ── Load Tailwind v3-style config ── */
+@config "../tailwind.config.js";
+
+/* ── Theme tokens (Tailwind v4) ── */
+@theme {
+  /* Fonts – Wix Madefor Display */
+  --font-sans: "Wix Madefor Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-display: "Wix Madefor Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* ── Base layer ── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #1e293b;
+    background: #f8fafc;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+
+
+}
+
+/* ── Animated background blobs (login page) ── */
+.pastel-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: blobFloat 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.pastel-blob-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #c4b5fd, #a78bfa);
+  top: -120px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.pastel-blob-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #86efac, #4ade80);
+  bottom: -100px;
+  right: -80px;
+  animation-delay: -6s;
+}
+
+.pastel-blob-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #93c5fd, #60a5fa);
+  top: 40%;
+  left: 55%;
+  animation-delay: -12s;
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -40px) scale(1.08); }
+  66%       { transform: translate(-20px, 24px) scale(0.92); }
+}
+
+/* ── Fade + slide-up entry ── */
+.animate-fadeSlideUp {
+  animation: fadeSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Slow pulse ── */
+.animate-pulse-slow {
+  animation: pulseSlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.85; transform: scale(1.05); }
+}
+
+/* ── Shake animation for errors ── */
+.animate-shake {
+  animation: shake 0.45s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+/* ── Glass card utility ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* ── Stagger children animation ── */
+.stagger-children > * {
+  animation: fadeSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
